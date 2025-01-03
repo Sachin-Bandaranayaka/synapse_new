@@ -1,0 +1,51 @@
+{
+    "collectionName": "components_shared_seos",
+    "info": {
+        "displayName": "SEO",
+        "description": "SEO metadata for content"
+    },
+    "options": {},
+    "attributes": {
+        "metaTitle": {
+            "type": "string",
+            "required": true,
+            "maxLength": 60
+        },
+        "metaDescription": {
+            "type": "text",
+            "required": true,
+            "maxLength": 160
+        },
+        "metaImage": {
+            "type": "media",
+            "multiple": false,
+            "required": false,
+            "allowedTypes": [
+                "images"
+            ]
+        },
+        "metaRobots": {
+            "type": "string",
+            "regex": "^(index|noindex),(follow|nofollow)$",
+            "default": "index,follow"
+        },
+        "structuredData": {
+            "type": "json"
+        },
+        "metaSocial": {
+            "type": "component",
+            "repeatable": true,
+            "component": "shared.meta-social"
+        },
+        "keywords": {
+            "type": "text"
+        },
+        "metaViewport": {
+            "type": "string",
+            "default": "width=device-width, initial-scale=1"
+        },
+        "canonicalURL": {
+            "type": "string"
+        }
+    }
+}

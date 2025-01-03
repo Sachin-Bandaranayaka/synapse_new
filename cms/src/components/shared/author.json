@@ -1,0 +1,37 @@
+{
+    "collectionName": "components_shared_authors",
+    "info": {
+        "displayName": "Author",
+        "description": "Author information for blog posts"
+    },
+    "options": {},
+    "attributes": {
+        "name": {
+            "type": "string",
+            "required": true
+        },
+        "email": {
+            "type": "email",
+            "required": true
+        },
+        "avatar": {
+            "type": "media",
+            "multiple": false,
+            "required": false,
+            "allowedTypes": [
+                "images"
+            ]
+        },
+        "bio": {
+            "type": "text"
+        },
+        "role": {
+            "type": "string"
+        },
+        "social": {
+            "type": "component",
+            "repeatable": true,
+            "component": "shared.social-link"
+        }
+    }
+}

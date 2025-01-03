@@ -1,0 +1,35 @@
+{
+    "collectionName": "components_shared_meta_socials",
+    "info": {
+        "displayName": "Meta Social",
+        "description": "Social media meta tags"
+    },
+    "options": {},
+    "attributes": {
+        "socialNetwork": {
+            "type": "enumeration",
+            "enum": [
+                "facebook",
+                "twitter"
+            ],
+            "required": true
+        },
+        "title": {
+            "type": "string",
+            "required": true,
+            "maxLength": 60
+        },
+        "description": {
+            "type": "string",
+            "maxLength": 65
+        },
+        "image": {
+            "type": "media",
+            "multiple": false,
+            "required": false,
+            "allowedTypes": [
+                "images"
+            ]
+        }
+    }
+}
