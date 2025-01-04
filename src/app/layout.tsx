@@ -1,146 +1,47 @@
-import type { Metadata } from "next";
-import { Inter, Montserrat } from "next/font/google";
-import "./globals.css";
-import { ThemeProvider } from "@/contexts/ThemeContext";
-import AuthProvider from "@/components/providers/AuthProvider";
-import { Analytics } from '@vercel/analytics/react';
-import OrganizationJsonLd from '@/components/seo/JsonLd';
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
+import { defaultMetadata } from '@/lib/metadata';
 import Script from 'next/script';
+import { organizationSchema, websiteSchema } from '@/lib/schema';
+import { Analytics } from '@vercel/analytics/react';
+import RootLayoutClient from './layout.client';
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
+const inter = Inter({ 
+    subsets: ['latin'],
+    display: 'swap',
+    preload: true
 });
 
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  variable: "--font-montserrat",
-  display: "swap",
-});
-
-export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
-  title: {
-    default: 'Synapse Labs - AI-Powered Digital Solutions & Software Development',
-    template: '%s | Synapse Labs',
-  },
-  description: 'Leading software development company in Sri Lanka specializing in AI solutions, web development, mobile apps, and custom software. Transform your business with our cutting-edge artificial intelligence and development services.',
-  keywords: [
-    'AI development',
-    'artificial intelligence',
-    'machine learning',
-    'software development',
-    'web development',
-    'mobile apps',
-    'Sri Lanka',
-    'custom software',
-    'Next.js',
-    'React',
-    'software company',
-    'IT services',
-    'digital solutions',
-    'Kurunegala',
-    'AI solutions',
-    'data analytics',
-    'intelligent automation',
-  ],
-  authors: [{ name: 'Synapse Labs' }],
-  creator: 'Synapse Labs',
-  publisher: 'Synapse Labs',
-  formatDetection: {
-    email: true,
-    address: true,
-    telephone: true,
-  },
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: '/',
-    siteName: 'Synapse Labs',
-    title: 'Synapse Labs - AI-Powered Digital Solutions & Software Development',
-    description: 'Leading software development company in Sri Lanka specializing in AI solutions, web development, mobile apps, and custom software. Transform your business with our cutting-edge artificial intelligence and development services.',
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Synapse Labs',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Synapse Labs - AI-Powered Digital Solutions & Software Development',
-    description: 'Leading software development company in Sri Lanka specializing in AI solutions, web development, mobile apps, and custom software. Transform your business with our cutting-edge artificial intelligence and development services.',
-    images: ['/og-image.jpg'],
-    creator: '@synapselabs',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  verification: {
-    google: 'your-google-verification-code',
-  },
-};
+export const metadata: Metadata = defaultMetadata;
 
 export default function RootLayout({
-  children,
+    children,
 }: {
-  children: React.ReactNode;
+    children: React.ReactNode;
 }) {
-  return (
-    <html lang="en" className={`${inter.variable} ${montserrat.variable}`} suppressHydrationWarning>
-      <head>
-        <Script
-          id="web-vitals"
-          strategy="afterInteractive"
-          src={`
-            (function() {
-              try {
-                const onPerfEntry = function(metric) {
-                  window.gtag('event', 'web_vitals', {
-                    event_category: 'Web Vitals',
-                    event_label: metric.name,
-                    value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
-                    metric_id: metric.id,
-                    metric_value: metric.value,
-                    metric_rating: metric.rating,
-                    non_interaction: true,
-                  });
-                };
-
-                import('web-vitals').then(({ onCLS, onFID, onFCP, onLCP, onTTFB }) => {
-                  onCLS(onPerfEntry);
-                  onFID(onPerfEntry);
-                  onFCP(onPerfEntry);
-                  onLCP(onPerfEntry);
-                  onTTFB(onPerfEntry);
-                });
-              } catch (e) {
-                console.error('Error loading web-vitals:', e);
-              }
-            })();
-          `}
-        />
-      </head>
-      <body>
-        <ThemeProvider>
-          <AuthProvider>
-            <OrganizationJsonLd />
-            {children}
-            <Analytics />
-          </AuthProvider>
-        </ThemeProvider>
-      </body>
-    </html>
-  );
+    return (
+        <html lang="en" className="dark">
+            <head>
+                <Script
+                    id="schema-org"
+                    type="application/ld+json"
+                    strategy="afterInteractive"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            '@context': 'https://schema.org',
+                            '@graph': [organizationSchema, websiteSchema],
+                        }),
+                    }}
+                />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+            </head>
+            <body className={`${inter.className} bg-gray-900 text-gray-100 min-h-screen flex flex-col overscroll-none`}>
+                <RootLayoutClient>
+                    {children}
+                </RootLayoutClient>
+                <Analytics />
+            </body>
+        </html>
+    );
 }

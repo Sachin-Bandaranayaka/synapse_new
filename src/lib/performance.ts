@@ -52,11 +52,34 @@ export function checkPerformanceBudget(metrics: PerformanceMetric[]) {
             fetch(process.env.NEXT_PUBLIC_PERFORMANCE_WEBHOOK, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    type: 'performance_violation',
-                    violations: budgetViolations
-                })
+                body: JSON.stringify({ violations: budgetViolations })
             }).catch(console.error);
         }
     }
+}
+
+// Reduce layout thrashing
+export function batchDOMReads(callback: () => void) {
+    window.requestAnimationFrame(() => {
+        const start = performance.now();
+        callback();
+        const duration = performance.now() - start;
+        
+        if (duration > 16.67) { // Longer than one frame (60fps)
+            console.warn(`[Performance] Long task detected: ${Math.round(duration)}ms`);
+        }
+    });
+}
+
+// Optimize animations
+export function optimizeAnimations() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion) {
+        document.documentElement.style.setProperty('--animation-duration', '0.001ms');
+    } else {
+        document.documentElement.style.setProperty('--animation-duration', '200ms');
+    }
+
+    return { prefersReducedMotion };
 }

@@ -7,7 +7,8 @@ const nextConfig = {
       'www.thesynapselabs.com',
       'thesynapselabs.com',
       'avatars.githubusercontent.com',
-      'lh3.googleusercontent.com'
+      'lh3.googleusercontent.com',
+      'placehold.co'
     ],
   },
   experimental: {

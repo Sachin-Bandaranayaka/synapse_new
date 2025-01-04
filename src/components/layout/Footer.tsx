@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { FaFacebook, FaTwitter, FaLinkedin, FaGithub, FaMapMarkerAlt, FaEnvelope, FaPhone } from 'react-icons/fa';
+import { FaFacebook, FaTwitter as FaXTwitter, FaLinkedin, FaGithub, FaMapMarkerAlt, FaEnvelope, FaPhone } from 'react-icons/fa';
 
 const navigation = {
     main: [
@@ -20,7 +20,7 @@ const navigation = {
     ],
     social: [
         { name: 'Facebook', href: '#', icon: FaFacebook },
-        { name: 'Twitter', href: '#', icon: FaTwitter },
+        { name: 'X', href: '#', icon: FaXTwitter },
         { name: 'LinkedIn', href: '#', icon: FaLinkedin },
         { name: 'GitHub', href: '#', icon: FaGithub },
     ],
