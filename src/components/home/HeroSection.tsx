@@ -3,6 +3,25 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { FaRocket, FaCode, FaMobile } from 'react-icons/fa';
+
+const features = [
+    {
+        name: 'Web Development',
+        description: 'Modern web applications built with cutting-edge technologies',
+        icon: FaCode,
+    },
+    {
+        name: 'Mobile Apps',
+        description: 'Native and cross-platform mobile applications',
+        icon: FaMobile,
+    },
+    {
+        name: 'Custom Software',
+        description: 'Tailored solutions for your unique business needs',
+        icon: FaRocket,
+    },
+];
 
 const fadeIn = {
     initial: { opacity: 0, y: 20 },
@@ -12,121 +31,114 @@ const fadeIn = {
 
 export default function HeroSection() {
     return (
-        <section className="relative bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 overflow-hidden">
-            <div className="absolute inset-0 bg-grid-pattern opacity-5" />
-            <div className="container mx-auto px-4 py-32 sm:px-6 lg:px-8 lg:py-40 relative">
-                <div className="lg:grid lg:grid-cols-12 lg:gap-8 items-center">
-                    <motion.div
-                        className="sm:text-center md:mx-auto md:max-w-2xl lg:col-span-6 lg:text-left"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5 }}
-                    >
-                        <motion.h1 {...fadeIn}>
-                            <motion.span
-                                className="block text-base font-semibold text-primary"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ delay: 0.2 }}
-                            >
-                                Welcome to Synapse Labs
-                            </motion.span>
-                            <motion.span
-                                className="mt-1 block text-4xl font-bold tracking-tight sm:text-5xl xl:text-6xl"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ delay: 0.4 }}
-                            >
-                                <span className="block text-gray-900 dark:text-white">
-                                    Engineering the Future
-                                </span>
-                                <span className="block text-primary">
-                                    of Digital Solutions
-                                </span>
-                            </motion.span>
-                        </motion.h1>
-                        <motion.p
-                            className="mt-3 text-base text-gray-500 dark:text-gray-400 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.6 }}
-                        >
-                            We specialize in creating cutting-edge web applications, mobile apps, and custom software solutions that help businesses thrive in the digital age.
-                        </motion.p>
+        <div className="relative isolate">
+            {/* Background */}
+            <div className="absolute inset-x-0 top-0 h-[1000px] bg-gradient-to-b from-gray-900 via-gray-900 to-gray-800" />
+            
+            {/* Gradient Blob */}
+            <div className="absolute inset-x-0 top-0 -z-10 transform-gpu overflow-hidden blur-3xl" aria-hidden="true">
+                <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-blue-500 to-emerald-500 opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" />
+            </div>
+
+            {/* Hero Content */}
+            <div className="relative px-4 pt-20 pb-16 sm:px-6 sm:pt-24 sm:pb-24 lg:pt-32 lg:pb-32">
+                <div className="mx-auto max-w-7xl">
+                    <div className="mx-auto max-w-2xl text-center">
                         <motion.div
-                            className="mt-8 sm:mt-12"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.8 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5 }}
                         >
-                            <div className="sm:flex sm:justify-center lg:justify-start space-x-4">
+                            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight text-white bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">
+                                Engineering Digital Excellence
+                            </h1>
+                            <p className="mt-4 sm:mt-6 text-base sm:text-lg leading-7 sm:leading-8 text-gray-300 px-4">
+                                We create innovative software solutions that transform businesses. 
+                                From web applications to mobile apps, we're your partner in digital success.
+                            </p>
+                            <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-x-6 px-4">
                                 <motion.div
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="rounded-md shadow-lg"
+                                    className="w-full sm:w-auto"
                                 >
                                     <Link
                                         href="/contact"
-                                        className="flex w-full items-center justify-center rounded-md border border-transparent bg-primary px-8 py-3 text-base font-medium text-white hover:bg-primary-dark md:px-10 md:py-4 md:text-lg transition-all duration-300 shadow-md hover:shadow-xl"
+                                        className="w-full sm:w-auto flex justify-center rounded-full bg-blue-500 px-6 sm:px-8 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400 transition-all duration-300"
                                     >
-                                        Get Started
+                                        Start Your Project
                                     </Link>
                                 </motion.div>
                                 <motion.div
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="mt-3 sm:mt-0"
+                                    className="w-full sm:w-auto"
                                 >
                                     <Link
                                         href="/portfolio"
-                                        className="flex w-full items-center justify-center rounded-md border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-8 py-3 text-base font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 md:px-10 md:py-4 md:text-lg transition-all duration-300"
+                                        className="w-full sm:w-auto flex justify-center rounded-full px-6 sm:px-8 py-3 text-sm font-semibold text-gray-300 border border-gray-700 hover:border-blue-500 hover:text-blue-400 transition-all duration-300"
                                     >
                                         View Our Work
                                     </Link>
                                 </motion.div>
                             </div>
                         </motion.div>
-                    </motion.div>
-                    <motion.div
-                        className="relative mt-12 sm:mx-auto sm:max-w-lg lg:col-span-6 lg:mx-0 lg:mt-0 lg:flex lg:max-w-none lg:items-center"
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, delay: 0.3 }}
-                    >
-                        <div className="relative mx-auto w-full rounded-lg shadow-xl lg:max-w-md">
-                            <div className="relative block w-full overflow-hidden rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
-                                <span className="sr-only">Watch our video</span>
-                                <div className="relative aspect-video w-full transform transition-transform duration-300 hover:scale-105">
-                                    <Image
-                                        src="https://images.unsplash.com/photo-1522071820081-009f0129c71c"
-                                        alt="Team working on project"
-                                        fill
-                                        className="object-cover rounded-lg"
-                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                        priority
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-tr from-black/20 to-transparent rounded-lg" />
-                                    <div className="absolute inset-0 w-full h-full flex items-center justify-center">
-                                        <motion.div
-                                            whileHover={{ scale: 1.1 }}
-                                            whileTap={{ scale: 0.9 }}
-                                        >
-                                            <svg
-                                                className="h-20 w-20 text-primary filter drop-shadow-lg"
-                                                fill="currentColor"
-                                                viewBox="0 0 84 84"
-                                            >
-                                                <circle opacity="0.9" cx="42" cy="42" r="42" fill="white" />
-                                                <path d="M55.5039 40.3359L37.1094 28.0729C35.7803 27.1869 34 28.1396 34 29.737V54.263C34 55.8604 35.7803 56.8131 37.1094 55.9271L55.5038 43.6641C56.6913 42.8725 56.6913 41.1275 55.5039 40.3359Z" />
-                                            </svg>
-                                        </motion.div>
+                    </div>
+
+                    {/* Features Grid */}
+                    <div className="mx-auto mt-12 sm:mt-16 lg:mt-20 px-4">
+                        <dl className="mx-auto grid max-w-2xl grid-cols-1 gap-4 sm:gap-6 text-base leading-7 text-gray-300 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-8">
+                            {features.map((feature) => (
+                                <motion.div
+                                    key={feature.name}
+                                    className="relative bg-gray-800/50 border border-gray-700 rounded-2xl p-4 sm:p-6 hover:border-blue-500 transition-all duration-300"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5 }}
+                                    whileHover={{ y: -5 }}
+                                >
+                                    <dt className="inline-flex items-center gap-x-3 text-white">
+                                        <feature.icon className="h-5 w-5 text-blue-400" aria-hidden="true" />
+                                        <span className="text-sm sm:text-base">{feature.name}</span>
+                                    </dt>
+                                    <dd className="mt-3 text-sm sm:text-base text-gray-400">{feature.description}</dd>
+                                </motion.div>
+                            ))}
+                        </dl>
+                    </div>
+
+                    {/* Stats */}
+                    <div className="mx-auto mt-12 sm:mt-16 lg:mt-20 px-4">
+                        <div className="mx-auto max-w-2xl lg:max-w-none">
+                            <div className="text-center">
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: 0.2 }}
+                                    className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
+                                >
+                                    <div className="flex flex-col gap-y-3 border border-gray-800 rounded-2xl p-6 sm:p-8">
+                                        <dt className="text-sm sm:text-base leading-7 text-gray-400">Projects Completed</dt>
+                                        <dd className="order-first text-2xl sm:text-3xl font-semibold tracking-tight text-white">3</dd>
                                     </div>
-                                </div>
+                                    <div className="flex flex-col gap-y-3 border border-gray-800 rounded-2xl p-6 sm:p-8">
+                                        <dt className="text-sm sm:text-base leading-7 text-gray-400">Happy Clients</dt>
+                                        <dd className="order-first text-2xl sm:text-3xl font-semibold tracking-tight text-white">3+</dd>
+                                    </div>
+                                    <div className="flex flex-col gap-y-3 border border-gray-800 rounded-2xl p-6 sm:p-8">
+                                        <dt className="text-sm sm:text-base leading-7 text-gray-400">Team Members</dt>
+                                        <dd className="order-first text-2xl sm:text-3xl font-semibold tracking-tight text-white">10+</dd>
+                                    </div>
+                                    <div className="flex flex-col gap-y-3 border border-gray-800 rounded-2xl p-6 sm:p-8">
+                                        <dt className="text-sm sm:text-base leading-7 text-gray-400">Years Experience</dt>
+                                        <dd className="order-first text-2xl sm:text-3xl font-semibold tracking-tight text-white">1+</dd>
+                                    </div>
+                                </motion.div>
                             </div>
                         </div>
-                    </motion.div>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
     );
-} 
+}

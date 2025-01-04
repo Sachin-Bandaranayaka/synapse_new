@@ -20,11 +20,11 @@ export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     return (
-        <header className="fixed w-full bg-white/70 backdrop-blur-xl z-50 border-b border-gray-100 dark:bg-gray-900/70 dark:border-gray-800 transition-all duration-300">
-            <nav className="container mx-auto px-0 sm:px-2 lg:px-4" aria-label="Top">
-                <div className="flex items-center justify-between h-32">
-                    <div className="flex items-center pl-2">
-                        <Link href="/" className="relative w-[32rem] h-28">
+        <header className="fixed w-full bg-gray-900/80 backdrop-blur-xl z-50 border-b border-gray-800">
+            <nav className="container mx-auto px-4" aria-label="Top">
+                <div className="flex items-center justify-between h-16 sm:h-20 lg:h-24">
+                    <div className="flex items-center">
+                        <Link href="/" className="relative w-32 sm:w-40 lg:w-48 h-12 sm:h-14 lg:h-16">
                             <Image
                                 src="/images/logo.png"
                                 alt="Synapse Labs"
@@ -36,25 +36,25 @@ export default function Header() {
                     </div>
 
                     {/* Desktop Navigation */}
-                    <div className="hidden md:flex items-center space-x-8 pr-4">
+                    <div className="hidden md:flex items-center space-x-4 lg:space-x-8">
                         {navigation.map((item) => (
                             <Link
                                 key={item.name}
                                 href={item.href}
-                                className="text-base font-medium text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-white transition-colors duration-300 relative group"
+                                className="text-sm lg:text-base font-medium text-gray-300 hover:text-blue-400 transition-colors duration-300 relative group"
                             >
                                 {item.name}
-                                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
+                                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300" />
                             </Link>
                         ))}
-                        <ThemeToggle />
                         <motion.div
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
+                            className="hidden lg:block"
                         >
                             <Link
                                 href="/contact"
-                                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-300 shadow-md hover:shadow-lg"
+                                className="inline-flex items-center px-4 lg:px-6 py-2 lg:py-2.5 border border-blue-500 text-sm font-medium rounded-full text-blue-400 hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300"
                             >
                                 Get Started
                             </Link>
@@ -63,10 +63,9 @@ export default function Header() {
 
                     {/* Mobile menu button */}
                     <div className="flex items-center gap-4 md:hidden">
-                        <ThemeToggle />
                         <button
                             type="button"
-                            className="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-white transition-colors duration-300"
+                            className="inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-blue-400 hover:bg-gray-800 transition-colors duration-300"
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         >
                             <span className="sr-only">Open main menu</span>
@@ -84,14 +83,14 @@ export default function Header() {
                     initial={false}
                     animate={mobileMenuOpen ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="md:hidden overflow-hidden"
+                    className="md:hidden overflow-hidden bg-gray-800/90 backdrop-blur-lg rounded-b-2xl border-t border-gray-700"
                 >
-                    <div className="px-2 pt-2 pb-3 space-y-1">
+                    <div className="px-4 py-4 space-y-2">
                         {navigation.map((item) => (
                             <Link
                                 key={item.name}
                                 href={item.href}
-                                className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-white transition-colors duration-300 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800"
+                                className="block px-4 py-3 text-base font-medium text-gray-300 hover:text-blue-400 transition-colors duration-300 rounded-xl hover:bg-gray-700/50"
                                 onClick={() => setMobileMenuOpen(false)}
                             >
                                 {item.name}
@@ -99,7 +98,7 @@ export default function Header() {
                         ))}
                         <Link
                             href="/contact"
-                            className="block w-full text-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-primary-dark transition-all duration-300 shadow-md hover:shadow-lg"
+                            className="block mt-4 px-4 py-3 text-center text-base font-medium text-white bg-blue-500 hover:bg-blue-400 transition-colors duration-300 rounded-xl"
                             onClick={() => setMobileMenuOpen(false)}
                         >
                             Get Started
@@ -109,4 +108,4 @@ export default function Header() {
             </nav>
         </header>
     );
-} 
+}

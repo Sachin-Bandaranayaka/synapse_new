@@ -103,42 +103,43 @@ export default function RootLayout({
         <Script
           id="web-vitals"
           strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  const onPerfEntry = function(metric) {
-                    window.gtag('event', metric.name, {
-                      value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
-                      metric_id: metric.id,
-                      metric_value: metric.value,
-                      metric_delta: metric.delta,
-                    });
-                  };
-                  
-                  import('web-vitals').then(({ onCLS, onFID, onFCP, onLCP, onTTFB }) => {
-                    onCLS(onPerfEntry);
-                    onFID(onPerfEntry);
-                    onFCP(onPerfEntry);
-                    onLCP(onPerfEntry);
-                    onTTFB(onPerfEntry);
+          src={`
+            (function() {
+              try {
+                const onPerfEntry = function(metric) {
+                  window.gtag('event', 'web_vitals', {
+                    event_category: 'Web Vitals',
+                    event_label: metric.name,
+                    value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
+                    metric_id: metric.id,
+                    metric_value: metric.value,
+                    metric_rating: metric.rating,
+                    non_interaction: true,
                   });
-                } catch (e) {
-                  console.error('Error loading web-vitals', e);
-                }
-              })();
-            `,
-          }}
+                };
+
+                import('web-vitals').then(({ onCLS, onFID, onFCP, onLCP, onTTFB }) => {
+                  onCLS(onPerfEntry);
+                  onFID(onPerfEntry);
+                  onFCP(onPerfEntry);
+                  onLCP(onPerfEntry);
+                  onTTFB(onPerfEntry);
+                });
+              } catch (e) {
+                console.error('Error loading web-vitals:', e);
+              }
+            })();
+          `}
         />
       </head>
-      <body className="bg-white text-gray-900 dark:bg-gray-900 dark:text-white" suppressHydrationWarning>
-        <AuthProvider>
-          <ThemeProvider>
+      <body>
+        <ThemeProvider>
+          <AuthProvider>
             <OrganizationJsonLd />
             {children}
-          </ThemeProvider>
-        </AuthProvider>
-        <Analytics />
+            <Analytics />
+          </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

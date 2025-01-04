@@ -34,17 +34,19 @@ const contactInfo = [
 
 export default function Footer() {
     return (
-        <footer className="bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800" aria-labelledby="footer-heading">
+        <footer className="bg-gray-900" aria-labelledby="footer-heading">
             <h2 id="footer-heading" className="sr-only">
                 Footer
             </h2>
+            {/* Main Footer Content */}
             <div className="container mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+                    {/* Company Info */}
                     <div className="space-y-8">
-                        <Link href="/" className="text-2xl font-heading font-bold text-primary-dark dark:text-white hover:text-primary transition-colors duration-300">
+                        <Link href="/" className="text-2xl font-heading font-bold text-white hover:text-blue-400 transition-colors duration-300">
                             Synapse Labs
                         </Link>
-                        <p className="text-base text-gray-500 dark:text-gray-400">
+                        <p className="text-base text-gray-400">
                             Leading software development company in Sri Lanka, delivering innovative solutions for businesses worldwide.
                         </p>
                         <div className="flex space-x-6">
@@ -52,7 +54,7 @@ export default function Footer() {
                                 <motion.a
                                     key={item.name}
                                     href={item.href}
-                                    className="text-gray-400 hover:text-primary transition-colors duration-300"
+                                    className="text-gray-400 hover:text-blue-400 transition-colors duration-300"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     whileHover={{ scale: 1.1 }}
@@ -64,8 +66,10 @@ export default function Footer() {
                             ))}
                         </div>
                     </div>
+
+                    {/* Navigation Links */}
                     <div>
-                        <h3 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">
+                        <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
                             Navigation
                         </h3>
                         <ul className="space-y-4">
@@ -73,7 +77,7 @@ export default function Footer() {
                                 <li key={item.name}>
                                     <Link
                                         href={item.href}
-                                        className="text-base text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors duration-300"
+                                        className="text-base text-gray-400 hover:text-blue-400 transition-colors duration-300"
                                     >
                                         {item.name}
                                     </Link>
@@ -81,8 +85,10 @@ export default function Footer() {
                             ))}
                         </ul>
                     </div>
+
+                    {/* Services Links */}
                     <div>
-                        <h3 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">
+                        <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
                             Services
                         </h3>
                         <ul className="space-y-4">
@@ -90,7 +96,7 @@ export default function Footer() {
                                 <li key={item.name}>
                                     <Link
                                         href={item.href}
-                                        className="text-base text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors duration-300"
+                                        className="text-base text-gray-400 hover:text-blue-400 transition-colors duration-300"
                                     >
                                         {item.name}
                                     </Link>
@@ -98,26 +104,42 @@ export default function Footer() {
                             ))}
                         </ul>
                     </div>
+
+                    {/* Contact Info */}
                     <div>
-                        <h3 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">
+                        <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
                             Contact Us
                         </h3>
-                        <div className="space-y-4">
+                        <ul className="space-y-4">
                             {contactInfo.map((item, index) => (
-                                <div key={index} className="flex items-center space-x-3 text-gray-500 dark:text-gray-400">
-                                    <item.icon className="h-5 w-5 text-primary" />
-                                    <span>{item.text}</span>
-                                </div>
+                                <li key={index} className="flex items-center space-x-3">
+                                    <item.icon className="h-5 w-5 text-blue-400" aria-hidden="true" />
+                                    <span className="text-base text-gray-400">{item.text}</span>
+                                </li>
                             ))}
-                        </div>
+                        </ul>
                     </div>
                 </div>
-                <div className="mt-12 border-t border-gray-200 dark:border-gray-800 pt-8">
-                    <p className="text-base text-gray-400 text-center">
-                        © {new Date().getFullYear()} Synapse Labs. All rights reserved.
-                    </p>
+            </div>
+
+            {/* Bottom Bar */}
+            <div className="bg-gray-800/50">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                    <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                        <p className="text-sm text-gray-400">
+                            {new Date().getFullYear()} Synapse Labs. All rights reserved.
+                        </p>
+                        <div className="flex space-x-6">
+                            <Link href="/privacy" className="text-sm text-gray-400 hover:text-blue-400 transition-colors duration-300">
+                                Privacy Policy
+                            </Link>
+                            <Link href="/terms" className="text-sm text-gray-400 hover:text-blue-400 transition-colors duration-300">
+                                Terms of Service
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </div>
         </footer>
     );
-} 
+}

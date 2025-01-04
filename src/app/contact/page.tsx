@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
-import ContactForm from '@/components/contact/ContactForm';
+import MainLayout from '@/components/layout/MainLayout';
+import ContactContent from '@/components/contact/ContactContent';
 
 export const metadata: Metadata = {
     title: 'Contact Us - Get in Touch for Your Software Project',
@@ -12,5 +13,9 @@ export const metadata: Metadata = {
 };
 
 export default function Contact() {
-    return <ContactForm />;
-} 
+    return (
+        <MainLayout>
+            <ContactContent />
+        </MainLayout>
+    );
+}
