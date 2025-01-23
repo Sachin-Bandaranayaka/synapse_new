@@ -26,19 +26,19 @@ export default function BlogPostClient({ post, slug }: BlogPostClientProps) {
     return (
         <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <header className="mb-8">
-                <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
                     {post.title}
                 </h1>
-                <p className="text-lg text-gray-600 dark:text-gray-400">
+                <p className="text-lg text-gray-600">
                     {post.excerpt}
                 </p>
-                <div className="mt-4 text-sm text-gray-500 dark:text-gray-400">
+                <div className="mt-4 text-sm text-gray-500">
                     Published on {new Date(post.createdAt).toLocaleDateString()}
                 </div>
             </header>
 
             <div 
-                className="prose dark:prose-invert max-w-none"
+                className="prose max-w-none"
                 dangerouslySetInnerHTML={{ __html: post.content }}
             />
         </article>

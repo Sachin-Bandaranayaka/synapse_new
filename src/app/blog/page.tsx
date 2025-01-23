@@ -47,11 +47,11 @@ export default function BlogPage() {
         <MainLayout>
             <div className="relative isolate">
                 {/* Background */}
-                <div className="absolute inset-x-0 top-0 h-[1000px] bg-gradient-to-b from-gray-900 via-gray-900 to-gray-800" />
+                <div className="absolute inset-x-0 top-0 h-[1000px] bg-gradient-to-b from-gray-50 via-gray-50 to-white" />
                 
                 {/* Gradient Blob */}
                 <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
-                    <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-blue-500 to-emerald-500 opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" />
+                    <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-blue-200 to-emerald-200 opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" />
                 </div>
 
                 {/* Hero Section */}
@@ -62,10 +62,10 @@ export default function BlogPage() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
                         >
-                            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight text-white bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">
+                            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight text-gray-900">
                                 Insights & Articles
                             </h1>
-                            <p className="mt-4 sm:mt-6 text-base sm:text-lg leading-7 sm:leading-8 text-gray-300">
+                            <p className="mt-4 sm:mt-6 text-base sm:text-lg leading-7 sm:leading-8 text-gray-600">
                                 Explore our latest thoughts on technology, development, and digital innovation.
                             </p>
                         </motion.div>
@@ -80,16 +80,17 @@ export default function BlogPage() {
                                 {[...Array(6)].map((_, i) => (
                                     <motion.div
                                         key={i}
-                                        className="bg-gray-800/50 rounded-2xl overflow-hidden h-[400px]"
+                                        className="bg-white rounded-2xl overflow-hidden h-[400px] shadow-sm border border-gray-100"
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.5, delay: i * 0.1 }}
                                     >
                                         <div className="animate-pulse">
-                                            <div className="h-48 bg-gray-700" />
-                                            <div className="p-6">
-                                                <div className="h-4 bg-gray-700 rounded w-3/4 mb-4" />
-                                                <div className="h-4 bg-gray-700 rounded w-1/2" />
+                                            <div className="h-48 bg-gray-100" />
+                                            <div className="p-6 space-y-4">
+                                                <div className="h-4 bg-gray-100 rounded w-3/4" />
+                                                <div className="h-4 bg-gray-100 rounded w-1/2" />
+                                                <div className="h-4 bg-gray-100 rounded w-5/6" />
                                             </div>
                                         </div>
                                     </motion.div>
@@ -101,10 +102,10 @@ export default function BlogPage() {
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                             >
-                                <p className="text-red-400">{error}</p>
+                                <p className="text-red-600">{error}</p>
                                 <button
                                     onClick={() => window.location.reload()}
-                                    className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                                    className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition-colors"
                                 >
                                     Try Again
                                 </button>

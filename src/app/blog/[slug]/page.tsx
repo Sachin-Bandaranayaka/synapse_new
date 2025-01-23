@@ -29,10 +29,10 @@ export default async function BlogPost({ params }: BlogPostProps) {
     } catch (error) {
         return (
             <div className="text-center py-12">
-                <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">
+                <h1 className="text-2xl font-semibold text-gray-900">
                     Failed to load blog post
                 </h1>
-                <p className="text-gray-600 dark:text-gray-400 mt-2">
+                <p className="text-gray-600 mt-2">
                     Please try again later
                 </p>
             </div>
