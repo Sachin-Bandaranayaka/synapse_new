@@ -117,106 +117,101 @@ export default function ChatWidget() {
 
     return (
         <>
+            {/* Chat toggle button */}
             <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={() => setIsOpen(true)}
-                className="fixed bottom-4 sm:bottom-8 right-4 sm:right-8 z-50 rounded-full bg-blue-500 p-3 sm:p-4 text-white shadow-lg hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                onClick={() => setIsOpen(!isOpen)}
+                className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 p-3 rounded-full bg-blue-500 text-white shadow-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 z-50"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                aria-label="Toggle chat"
             >
-                <FaComments className="h-5 w-5 sm:h-6 sm:w-6" />
+                {isOpen ? (
+                    <FaTimes className="h-6 w-6" />
+                ) : (
+                    <FaComments className="h-6 w-6" />
+                )}
             </motion.button>
 
+            {/* Chat container */}
             <AnimatePresence>
                 {isOpen && (
-                    <>
-                        {/* Backdrop for mobile */}
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            className="fixed inset-0 bg-black/50 z-40 md:hidden"
-                            onClick={() => setIsOpen(false)}
-                        />
-                        
-                        <motion.div
-                            initial={{ opacity: 0, y: '100%' }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: '100%' }}
-                            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-                            className="fixed bottom-0 right-0 z-50 w-full sm:bottom-24 sm:right-8 sm:w-96 overflow-hidden rounded-t-2xl sm:rounded-2xl bg-gray-800 shadow-xl"
-                        >
-                            {/* Header */}
-                            <div className="flex items-center justify-between bg-gray-700 p-4">
-                                <h3 className="text-lg font-semibold text-white">Chat with us</h3>
-                                <button
-                                    onClick={() => setIsOpen(false)}
-                                    className="rounded-full p-1 text-gray-400 hover:bg-gray-600 hover:text-white"
-                                >
-                                    <FaTimes className="h-5 w-5" />
-                                </button>
-                            </div>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 20, scale: 0.95 }}
+                        className="fixed bottom-20 right-4 sm:bottom-24 sm:right-8 w-[calc(100%-2rem)] sm:w-[400px] max-h-[600px] bg-gray-900 rounded-2xl shadow-xl overflow-hidden z-50 border border-gray-800"
+                    >
+                        {/* Header */}
+                        <div className="flex items-center justify-between bg-gray-700 p-4">
+                            <h3 className="text-lg font-semibold text-white">Chat with us</h3>
+                            <button
+                                onClick={() => setIsOpen(false)}
+                                className="rounded-full p-1 text-gray-400 hover:bg-gray-600 hover:text-white"
+                            >
+                                <FaTimes className="h-5 w-5" />
+                            </button>
+                        </div>
 
-                            {/* Messages */}
-                            <div className="h-[60vh] sm:h-96 overflow-y-auto p-4">
-                                <div className="space-y-4">
-                                    {messages.map((message) => (
+                        {/* Messages */}
+                        <div className="h-[60vh] sm:h-96 overflow-y-auto p-4">
+                            <div className="space-y-4">
+                                {messages.map((message) => (
+                                    <div
+                                        key={message.id}
+                                        className={`flex ${
+                                            message.sender === 'user' ? 'justify-end' : 'justify-start'
+                                        }`}
+                                    >
                                         <div
-                                            key={message.id}
-                                            className={`flex ${
-                                                message.sender === 'user' ? 'justify-end' : 'justify-start'
+                                            className={`max-w-[85%] rounded-2xl px-4 py-2 ${
+                                                message.sender === 'user'
+                                                    ? 'bg-blue-500 text-white'
+                                                    : 'bg-gray-700 text-gray-200'
                                             }`}
                                         >
-                                            <div
-                                                className={`max-w-[85%] rounded-2xl px-4 py-2 ${
-                                                    message.sender === 'user'
-                                                        ? 'bg-blue-500 text-white'
-                                                        : 'bg-gray-700 text-gray-200'
-                                                }`}
-                                            >
-                                                <p className="text-sm break-words">{message.text}</p>
-                                                <p className="mt-1 text-xs opacity-75">
-                                                    {new Date(message.timestamp).toLocaleTimeString()}
-                                                </p>
+                                            <p className="text-sm break-words">{message.text}</p>
+                                            <p className="mt-1 text-xs opacity-75">
+                                                {new Date(message.timestamp).toLocaleTimeString()}
+                                            </p>
+                                        </div>
+                                    </div>
+                                ))}
+                                {isTyping && (
+                                    <div className="flex justify-start">
+                                        <div className="rounded-2xl bg-gray-700 px-4 py-2">
+                                            <div className="flex space-x-2">
+                                                <div className="h-2 w-2 animate-bounce rounded-full bg-gray-400"></div>
+                                                <div className="h-2 w-2 animate-bounce rounded-full bg-gray-400" style={{ animationDelay: '0.2s' }}></div>
+                                                <div className="h-2 w-2 animate-bounce rounded-full bg-gray-400" style={{ animationDelay: '0.4s' }}></div>
                                             </div>
                                         </div>
-                                    ))}
-                                    {isTyping && (
-                                        <div className="flex justify-start">
-                                            <div className="rounded-2xl bg-gray-700 px-4 py-2">
-                                                <div className="flex space-x-2">
-                                                    <div className="h-2 w-2 animate-bounce rounded-full bg-gray-400"></div>
-                                                    <div className="h-2 w-2 animate-bounce rounded-full bg-gray-400" style={{ animationDelay: '0.2s' }}></div>
-                                                    <div className="h-2 w-2 animate-bounce rounded-full bg-gray-400" style={{ animationDelay: '0.4s' }}></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )}
-                                    <div ref={messagesEndRef} />
-                                </div>
+                                    </div>
+                                )}
+                                <div ref={messagesEndRef} />
                             </div>
+                        </div>
 
-                            {/* Input */}
-                            <form onSubmit={handleSendMessage} className="border-t border-gray-700 p-4">
-                                <div className="flex space-x-2">
-                                    <input
-                                        type="text"
-                                        value={newMessage}
-                                        onChange={(e) => setNewMessage(e.target.value)}
-                                        placeholder="Type your message..."
-                                        className="flex-1 rounded-lg bg-gray-700 px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                        disabled={isTyping}
-                                    />
-                                    <button
-                                        type="submit"
-                                        disabled={isTyping || !newMessage.trim()}
-                                        className="rounded-lg bg-blue-500 p-2 text-white transition-colors hover:bg-blue-400 disabled:opacity-50"
-                                    >
-                                        <FaPaperPlane className="h-5 w-5" />
-                                    </button>
-                                </div>
-                            </form>
-                        </motion.div>
-                    </>
+                        {/* Input */}
+                        <form onSubmit={handleSendMessage} className="border-t border-gray-700 p-4">
+                            <div className="flex space-x-2">
+                                <input
+                                    type="text"
+                                    value={newMessage}
+                                    onChange={(e) => setNewMessage(e.target.value)}
+                                    placeholder="Type your message..."
+                                    className="flex-1 rounded-lg bg-gray-700 px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    disabled={isTyping}
+                                />
+                                <button
+                                    type="submit"
+                                    disabled={isTyping || !newMessage.trim()}
+                                    className="rounded-lg bg-blue-500 p-2 text-white transition-colors hover:bg-blue-400 disabled:opacity-50"
+                                >
+                                    <FaPaperPlane className="h-5 w-5" />
+                                </button>
+                            </div>
+                        </form>
+                    </motion.div>
                 )}
             </AnimatePresence>
         </>

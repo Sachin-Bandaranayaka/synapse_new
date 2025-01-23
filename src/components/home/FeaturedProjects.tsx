@@ -38,13 +38,13 @@ const projects = [
 
 export default function FeaturedProjects() {
     return (
-        <section className="relative bg-gray-900 py-24 sm:py-32">
+        <section className="relative bg-gray-50 py-24 sm:py-32">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="mx-auto max-w-2xl text-center">
-                    <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                    <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                         Featured Projects
                     </h2>
-                    <p className="mt-6 text-lg leading-8 text-gray-300">
+                    <p className="mt-6 text-lg leading-8 text-gray-600">
                         Take a look at some of our recent work
                     </p>
                 </div>
@@ -53,7 +53,7 @@ export default function FeaturedProjects() {
                     {projects.map((project) => (
                         <motion.article
                             key={project.name}
-                            className={`relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 border ${project.inDevelopment ? 'border-blue-500/50' : 'border-gray-800'} hover:border-blue-500 transition-all duration-300`}
+                            className={`relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-white border ${project.inDevelopment ? 'border-blue-500/50' : 'border-gray-100'} hover:border-blue-500 transition-all duration-300 shadow-sm`}
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
@@ -75,21 +75,23 @@ export default function FeaturedProjects() {
                                     {project.tech.map((tech) => (
                                         <span
                                             key={tech}
-                                            className="inline-flex items-center rounded-full bg-blue-400/10 px-3 py-1 text-xs font-medium text-blue-400 ring-1 ring-inset ring-blue-400/20"
+                                            className="inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-600 ring-1 ring-inset ring-blue-600/20"
                                         >
                                             {tech}
                                         </span>
                                     ))}
                                 </div>
-                                <h3 className="text-2xl font-semibold leading-6 text-white">
+                                <h3 className="text-2xl font-semibold leading-6 text-gray-900">
                                     <Link href={project.link} className="hover:text-blue-400 transition-colors">
                                         {project.name}
                                     </Link>
                                 </h3>
-                                <p className="text-sm leading-6 text-gray-300">{project.description}</p>
+                                <p className="text-sm leading-6 text-gray-600">
+                                    {project.description}
+                                </p>
                                 <Link
                                     href={project.link}
-                                    className="mt-4 text-sm font-semibold leading-6 text-blue-400 hover:text-blue-300 transition-colors"
+                                    className="mt-4 text-sm font-semibold leading-6 text-blue-600 hover:text-blue-500 transition-colors"
                                 >
                                     View Case Study <span aria-hidden="true">→</span>
                                 </Link>

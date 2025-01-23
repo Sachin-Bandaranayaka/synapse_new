@@ -114,11 +114,11 @@ export default function ContactContent() {
     return (
         <div className="relative isolate">
             {/* Background */}
-            <div className="absolute inset-x-0 top-0 h-[1000px] bg-gradient-to-b from-gray-900 via-gray-900 to-gray-800" />
+            <div className="absolute inset-x-0 top-0 h-[1000px] bg-gradient-to-b from-gray-50 via-gray-50 to-white" />
             
             {/* Gradient Blob */}
             <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
-                <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-blue-500 to-emerald-500 opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" />
+                <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-blue-200 to-emerald-200 opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" />
             </div>
 
             {/* Hero Section */}
@@ -130,10 +130,10 @@ export default function ContactContent() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
                         >
-                            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight text-white bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">
+                            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight text-gray-900">
                                 Get in Touch
                             </h1>
-                            <p className="mt-4 sm:mt-6 text-base sm:text-lg leading-7 sm:leading-8 text-gray-300">
+                            <p className="mt-4 sm:mt-6 text-base sm:text-lg leading-7 sm:leading-8 text-gray-600">
                                 Have a project in mind? We'd love to hear about it. Let's discuss how we can help bring your ideas to life.
                             </p>
                         </motion.div>
@@ -159,14 +159,14 @@ export default function ContactContent() {
                                         href={item.link}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="group flex gap-x-4 rounded-2xl bg-gray-800/50 p-6 hover:bg-gray-800/70 transition-all duration-300"
+                                        className="group flex gap-x-4 rounded-2xl bg-white p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100"
                                     >
-                                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-500 group-hover:bg-blue-400 transition-colors duration-300">
+                                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-600 group-hover:bg-blue-500 transition-colors duration-300">
                                             <item.icon className="h-6 w-6 text-white" aria-hidden="true" />
                                         </div>
                                         <div>
-                                            <h3 className="font-semibold text-white">{item.name}</h3>
-                                            <p className="mt-1 text-gray-300">{item.description}</p>
+                                            <h3 className="font-semibold text-gray-900">{item.name}</h3>
+                                            <p className="mt-1 text-gray-600">{item.description}</p>
                                         </div>
                                     </a>
                                 ))}
@@ -174,7 +174,7 @@ export default function ContactContent() {
 
                             {/* Social Links */}
                             <div className="mt-8">
-                                <h3 className="text-lg font-semibold text-white mb-4">Connect With Us</h3>
+                                <h3 className="text-lg font-semibold text-gray-900 mb-4">Connect With Us</h3>
                                 <div className="flex gap-4">
                                     {socialLinks.map((social) => (
                                         <motion.a
@@ -182,11 +182,11 @@ export default function ContactContent() {
                                             href={social.link}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-800/50 hover:bg-blue-500 transition-all duration-300"
+                                            className="flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-sm hover:bg-blue-600 hover:text-white transition-all duration-300 border border-gray-100"
                                             whileHover={{ scale: 1.1 }}
                                             whileTap={{ scale: 0.95 }}
                                         >
-                                            <social.icon className="h-5 w-5 text-white" aria-hidden="true" />
+                                            <social.icon className="h-6 w-6" aria-hidden="true" />
                                         </motion.a>
                                     ))}
                                 </div>
@@ -199,12 +199,12 @@ export default function ContactContent() {
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="rounded-2xl bg-gray-800/50 p-8"
+                        className="rounded-2xl bg-white p-8 shadow-sm border border-gray-100"
                     >
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                                 <div>
-                                    <label htmlFor="name" className="block text-sm font-medium text-gray-300">
+                                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">
                                         Name
                                     </label>
                                     <input
@@ -214,12 +214,12 @@ export default function ContactContent() {
                                         required
                                         value={formData.name}
                                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                        className="mt-2 block w-full rounded-lg border-0 bg-gray-700/50 px-4 py-2.5 text-white shadow-sm ring-1 ring-inset ring-gray-600 focus:ring-2 focus:ring-blue-500 sm:text-sm"
+                                        className="mt-2 block w-full rounded-lg border border-gray-300 px-4 py-2.5 text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                                         placeholder="John Doe"
                                     />
                                 </div>
                                 <div>
-                                    <label htmlFor="email" className="block text-sm font-medium text-gray-300">
+                                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                                         Email
                                     </label>
                                     <input
@@ -229,14 +229,14 @@ export default function ContactContent() {
                                         required
                                         value={formData.email}
                                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                        className="mt-2 block w-full rounded-lg border-0 bg-gray-700/50 px-4 py-2.5 text-white shadow-sm ring-1 ring-inset ring-gray-600 focus:ring-2 focus:ring-blue-500 sm:text-sm"
+                                        className="mt-2 block w-full rounded-lg border border-gray-300 px-4 py-2.5 text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                                         placeholder="john@example.com"
                                     />
                                 </div>
                             </div>
                             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                                 <div>
-                                    <label htmlFor="phone" className="block text-sm font-medium text-gray-300">
+                                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
                                         Phone (optional)
                                     </label>
                                     <input
@@ -245,12 +245,12 @@ export default function ContactContent() {
                                         id="phone"
                                         value={formData.phone}
                                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                        className="mt-2 block w-full rounded-lg border-0 bg-gray-700/50 px-4 py-2.5 text-white shadow-sm ring-1 ring-inset ring-gray-600 focus:ring-2 focus:ring-blue-500 sm:text-sm"
+                                        className="mt-2 block w-full rounded-lg border border-gray-300 px-4 py-2.5 text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                                         placeholder="+1 (555) 000-0000"
                                     />
                                 </div>
                                 <div>
-                                    <label htmlFor="company" className="block text-sm font-medium text-gray-300">
+                                    <label htmlFor="company" className="block text-sm font-medium text-gray-700">
                                         Company (optional)
                                     </label>
                                     <input
@@ -259,13 +259,13 @@ export default function ContactContent() {
                                         id="company"
                                         value={formData.company}
                                         onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                                        className="mt-2 block w-full rounded-lg border-0 bg-gray-700/50 px-4 py-2.5 text-white shadow-sm ring-1 ring-inset ring-gray-600 focus:ring-2 focus:ring-blue-500 sm:text-sm"
+                                        className="mt-2 block w-full rounded-lg border border-gray-300 px-4 py-2.5 text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                                         placeholder="Your Company"
                                     />
                                 </div>
                             </div>
                             <div>
-                                <label htmlFor="message" className="block text-sm font-medium text-gray-300">
+                                <label htmlFor="message" className="block text-sm font-medium text-gray-700">
                                     Message
                                 </label>
                                 <textarea
@@ -275,7 +275,7 @@ export default function ContactContent() {
                                     rows={4}
                                     value={formData.message}
                                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                                    className="mt-2 block w-full rounded-lg border-0 bg-gray-700/50 px-4 py-2.5 text-white shadow-sm ring-1 ring-inset ring-gray-600 focus:ring-2 focus:ring-blue-500 sm:text-sm"
+                                    className="mt-2 block w-full rounded-lg border border-gray-300 px-4 py-2.5 text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                                     placeholder="Tell us about your project..."
                                 />
                             </div>
@@ -284,8 +284,8 @@ export default function ContactContent() {
                                 <div
                                     className={`rounded-lg p-4 ${
                                         submitStatus.type === 'success'
-                                            ? 'bg-green-900/50 text-green-200'
-                                            : 'bg-red-900/50 text-red-200'
+                                            ? 'bg-green-50 text-green-800'
+                                            : 'bg-red-50 text-red-800'
                                     }`}
                                 >
                                     {submitStatus.message}
@@ -298,7 +298,7 @@ export default function ContactContent() {
                                     disabled={isSubmitting}
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
-                                    className={`w-full rounded-lg bg-blue-500 px-8 py-3 text-center text-sm font-semibold text-white shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 transition-all duration-300 ${
+                                    className={`w-full rounded-lg bg-blue-600 px-8 py-3 text-center text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-all duration-300 ${
                                         isSubmitting ? 'opacity-75 cursor-not-allowed' : ''
                                     }`}
                                 >
