@@ -7,24 +7,30 @@ import { FaQuoteLeft } from 'react-icons/fa6';
 const testimonials = [
     {
         content: "Synapse Labs transformed our vision into reality with their innovative solutions. Their expertise in web development and commitment to quality helped us create a platform that perfectly serves our users' needs.",
-        author: "Mr. Uditha Chathuranga",
-        position: "Associate Manager & Investment Advisor",
+        author: {
+            name: "Mr. Uditha Chathuranga",
+            role: "Associate Manager & Investment Advisor"
+        },
         company: "LOLC Securities Ltd",
         subtitle: "Owner of QuickFind.lk",
         image: "/images/testimonials/uditha.jpg"
     },
     {
         content: "The team at Synapse Labs delivered an exceptional sales management system that streamlined our operations. Their technical prowess and attention to detail exceeded our expectations.",
-        author: "Mr. Anuruddha Rajakaruna",
-        position: "Associate Manager & Investment Advisor",
+        author: {
+            name: "Mr. Anuruddha Rajakaruna",
+            role: "Associate Manager & Investment Advisor"
+        },
         company: "LOLC Securities Ltd",
         subtitle: "Owner of LULU Enterprises",
         image: "/images/testimonials/anuruddha.jpg"
     },
     {
         content: "Synapse Labs created a stunning portfolio website that perfectly captures my professional identity. Their creative approach and understanding of my needs resulted in a website that truly stands out.",
-        author: "Mr. Manjana Wiman",
-        position: "Professional Bartender & Barista",
+        author: {
+            name: "Mr. Manjana Wiman",
+            role: "Professional Bartender & Barista"
+        },
         company: "Angel Beach Unawatuna",
         image: "/images/testimonials/manjana.jpg"
     }
@@ -32,66 +38,66 @@ const testimonials = [
 
 export default function TestimonialsSection() {
     return (
-        <section className="bg-gray-900 py-24 sm:py-32">
+        <section className="relative isolate bg-white py-24 sm:py-32">
+            {/* Background gradient */}
+            <div className="absolute inset-x-0 top-0 -z-10 transform-gpu overflow-hidden blur-3xl" aria-hidden="true">
+                <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-emerald-200 to-blue-200 opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" />
+            </div>
+
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                <div className="mx-auto max-w-2xl text-center mb-16">
-                    <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                        Client Testimonials
+                <div className="mx-auto max-w-xl text-center">
+                    <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                        Client Success Stories
                     </h2>
-                    <p className="mt-4 text-lg leading-8 text-gray-300">
-                        Hear what our clients have to say about working with us
+                    <p className="mt-6 text-lg leading-8 text-gray-600">
+                        Hear what our clients have to say about their experience working with us
                     </p>
                 </div>
 
-                <div className="mx-auto grid max-w-2xl grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+                <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
                     {testimonials.map((testimonial, index) => (
-                        <motion.div
-                            key={testimonial.author}
-                            className="flex flex-col justify-between rounded-2xl bg-gray-800/50 backdrop-blur-sm p-8 ring-1 ring-gray-700/50"
+                        <motion.figure
+                            key={testimonial.author.name}
+                            className="relative rounded-2xl bg-gray-50 p-6 shadow-sm ring-1 ring-gray-200 hover:shadow-md hover:ring-blue-500 transition-all duration-300"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.2 }}
+                            transition={{ duration: 0.5, delay: index * 0.1 }}
                             whileHover={{ y: -5 }}
                         >
-                            <div>
-                                <div className="flex flex-col items-center text-center mb-8">
-                                    <div className="mb-4">
-                                        <Image
-                                            className="h-32 w-32 rounded-full object-cover ring-4 ring-blue-400/20"
-                                            src={testimonial.image}
-                                            alt={testimonial.author}
-                                            width={128}
-                                            height={128}
-                                        />
-                                    </div>
-                                    <div>
-                                        <h3 className="text-xl font-semibold leading-6 text-white">
-                                            {testimonial.author}
-                                        </h3>
-                                        <p className="text-sm text-gray-400 mt-2">
-                                            {testimonial.position}
-                                        </p>
-                                        <p className="text-sm text-gray-400">
-                                            {testimonial.company}
-                                        </p>
-                                        {testimonial.subtitle && (
-                                            <p className="text-sm text-blue-400 mt-1">
-                                                {testimonial.subtitle}
-                                            </p>
-                                        )}
-                                    </div>
-                                </div>
-
-                                <div className="relative">
-                                    <FaQuoteLeft className="absolute -top-4 -left-2 h-8 w-8 text-blue-500/20" aria-hidden="true" />
-                                    <p className="text-gray-300 text-lg leading-7 pl-6">
-                                        "{testimonial.content}"
-                                    </p>
-                                </div>
+                            <div className="flex items-center gap-x-4 mb-6">
+                                <FaQuoteLeft className="h-8 w-8 text-blue-600" aria-hidden="true" />
                             </div>
-                        </motion.div>
+                            <blockquote className="text-gray-600">
+                                <p className="text-base leading-relaxed">{`"${testimonial.content}"`}</p>
+                            </blockquote>
+                            <figcaption className="mt-6 flex items-center gap-x-4">
+                                <div className="relative h-12 w-12 flex-none">
+                                    <Image
+                                        src={testimonial.image}
+                                        alt={testimonial.author.name}
+                                        fill
+                                        className="rounded-full object-cover"
+                                    />
+                                </div>
+                                <div>
+                                    <div className="font-semibold text-gray-900">{testimonial.author.name}</div>
+                                    <div className="text-gray-600">{testimonial.author.role}</div>
+                                    {testimonial.company && (
+                                        <div className="text-gray-600">{testimonial.company}</div>
+                                    )}
+                                    {testimonial.subtitle && (
+                                        <div className="text-blue-600 text-sm">{testimonial.subtitle}</div>
+                                    )}
+                                </div>
+                            </figcaption>
+                        </motion.figure>
                     ))}
                 </div>
+            </div>
+
+            {/* Bottom gradient */}
+            <div className="absolute inset-x-0 bottom-0 -z-10 transform-gpu overflow-hidden blur-3xl" aria-hidden="true">
+                <div className="relative left-[calc(50%+11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-emerald-200 to-blue-200 opacity-30 sm:left-[calc(50%+30rem)] sm:w-[72.1875rem]" />
             </div>
         </section>
     );
