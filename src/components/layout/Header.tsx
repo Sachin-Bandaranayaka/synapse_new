@@ -6,6 +6,7 @@ import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
+import ThemeToggle from '@/components/theme/ThemeToggle';
 
 const navigation = [
     { name: 'Home', href: '/' },
@@ -32,64 +33,63 @@ export default function Header() {
     };
 
     return (
-        <header className="fixed w-full bg-gray-900/80 backdrop-blur-xl z-50 border-b border-gray-800">
+        <header className="fixed w-full bg-white/80 backdrop-blur-xl z-50 border-b border-gray-100 shadow-sm">
             <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 sm:px-6 lg:px-8" aria-label="Global">
                 <motion.div 
                     className="flex lg:flex-1"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                 >
-                    <Link href="/" className="-m-1.5 p-1.5 text-lg sm:text-xl font-bold tracking-tight">
+                    <Link href="/" className="-m-1.5 p-1.5 text-lg sm:text-xl font-bold tracking-tight text-gray-900">
                         Synapse Labs
                     </Link>
                 </motion.div>
                 <div className="flex lg:hidden">
                     <button
                         type="button"
-                        className="ml-2 -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-400"
+                        className="ml-2 -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-600 hover:text-gray-900"
                         onClick={() => setMobileMenuOpen(true)}
                     >
                         <span className="sr-only">Open main menu</span>
                         <Bars3Icon className="h-6 w-6" aria-hidden="true" />
                     </button>
                 </div>
-                <div className="hidden lg:flex lg:gap-x-12">
+                <div className="hidden lg:flex lg:gap-x-8">
                     {navigation.map((item) => (
                         <Link
                             key={item.name}
                             href={item.href}
                             onClick={(e) => handleNavClick(e, item.href)}
-                            className="text-sm lg:text-base font-medium text-gray-300 hover:text-blue-400 transition-colors duration-300 relative group"
+                            className="text-sm font-semibold leading-6 text-gray-700 hover:text-gray-900"
                         >
                             {item.name}
                         </Link>
                     ))}
                 </div>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4">
-                    <motion.div
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                    <Link
+                        href="/contact"
+                        className="rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                     >
-                        <Link
-                            href="/contact"
-                            onClick={(e) => handleNavClick(e, '/contact')}
-                            className="inline-flex items-center px-4 lg:px-6 py-2 lg:py-2.5 border border-blue-500 text-sm font-medium rounded-full text-blue-400 hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300"
-                        >
-                            Get Started
-                        </Link>
-                    </motion.div>
+                        Contact Us
+                    </Link>
+                    <ThemeToggle />
                 </div>
             </nav>
             <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
                 <div className="fixed inset-0 z-50" />
-                <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900/95 backdrop-blur-xl px-4 py-4 sm:max-w-sm sm:px-6 sm:ring-1 sm:ring-white/10">
+                <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
                     <div className="flex items-center justify-between">
-                        <Link href="/" className="-m-1.5 p-1.5 text-lg sm:text-xl font-bold tracking-tight">
+                        <Link
+                            href="/"
+                            className="-m-1.5 p-1.5 text-lg font-bold tracking-tight text-gray-900"
+                            onClick={() => setMobileMenuOpen(false)}
+                        >
                             Synapse Labs
                         </Link>
                         <button
                             type="button"
-                            className="-m-2.5 rounded-md p-2.5 text-gray-400"
+                            className="-m-2.5 rounded-md p-2.5 text-gray-700"
                             onClick={() => setMobileMenuOpen(false)}
                         >
                             <span className="sr-only">Close menu</span>
@@ -97,26 +97,31 @@ export default function Header() {
                         </button>
                     </div>
                     <div className="mt-6 flow-root">
-                        <div className="-my-6 divide-y divide-gray-500/25">
+                        <div className="-my-6 divide-y divide-gray-200">
                             <div className="space-y-2 py-6">
                                 {navigation.map((item) => (
                                     <Link
                                         key={item.name}
                                         href={item.href}
                                         onClick={(e) => handleNavClick(e, item.href)}
-                                        className="block px-4 py-3 text-base font-medium text-gray-300 hover:text-blue-400 transition-colors duration-300 rounded-xl hover:bg-gray-700/50"
+                                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                                     >
                                         {item.name}
                                     </Link>
                                 ))}
                             </div>
-                            <Link
-                                href="/contact"
-                                onClick={(e) => handleNavClick(e, '/contact')}
-                                className="block mt-4 px-4 py-3 text-center text-base font-medium text-white bg-blue-500 hover:bg-blue-400 transition-colors duration-300 rounded-xl"
-                            >
-                                Get Started
-                            </Link>
+                            <div className="py-6">
+                                <Link
+                                    href="/contact"
+                                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                >
+                                    Contact Us
+                                </Link>
+                                <div className="mt-4">
+                                    <ThemeToggle />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </Dialog.Panel>

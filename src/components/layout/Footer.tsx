@@ -34,7 +34,7 @@ const contactInfo = [
 
 export default function Footer() {
     return (
-        <footer className="bg-gray-900" aria-labelledby="footer-heading">
+        <footer className="bg-gray-50 border-t border-gray-100" aria-labelledby="footer-heading">
             <h2 id="footer-heading" className="sr-only">
                 Footer
             </h2>
@@ -43,42 +43,30 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
                     {/* Company Info */}
                     <div className="space-y-8">
-                        <Link href="/" className="text-2xl font-heading font-bold text-white hover:text-blue-400 transition-colors duration-300">
+                        <Link href="/" className="text-2xl font-heading font-bold text-gray-900 hover:text-blue-600 transition-colors duration-300">
                             Synapse Labs
                         </Link>
-                        <p className="text-base text-gray-400">
+                        <p className="text-base text-gray-600">
                             Leading software development company in Sri Lanka, delivering innovative solutions for businesses worldwide.
                         </p>
-                        <div className="flex space-x-6">
-                            {navigation.social.map((item) => (
-                                <motion.a
-                                    key={item.name}
-                                    href={item.href}
-                                    className="text-gray-400 hover:text-blue-400 transition-colors duration-300"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    whileHover={{ scale: 1.1 }}
-                                    whileTap={{ scale: 0.9 }}
-                                >
-                                    <span className="sr-only">{item.name}</span>
-                                    <item.icon className="h-6 w-6" aria-hidden="true" />
-                                </motion.a>
+                        {/* Contact Info */}
+                        <div className="space-y-4">
+                            {contactInfo.map((item, index) => (
+                                <div key={index} className="flex items-center space-x-3">
+                                    <item.icon className="h-5 w-5 text-blue-600" />
+                                    <span className="text-gray-600">{item.text}</span>
+                                </div>
                             ))}
                         </div>
                     </div>
 
-                    {/* Navigation Links */}
+                    {/* Quick Links */}
                     <div>
-                        <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
-                            Navigation
-                        </h3>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-6">Quick Links</h3>
                         <ul className="space-y-4">
                             {navigation.main.map((item) => (
                                 <li key={item.name}>
-                                    <Link
-                                        href={item.href}
-                                        className="text-base text-gray-400 hover:text-blue-400 transition-colors duration-300"
-                                    >
+                                    <Link href={item.href} className="text-gray-600 hover:text-blue-600 transition-colors duration-300">
                                         {item.name}
                                     </Link>
                                 </li>
@@ -86,18 +74,13 @@ export default function Footer() {
                         </ul>
                     </div>
 
-                    {/* Services Links */}
+                    {/* Services */}
                     <div>
-                        <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
-                            Services
-                        </h3>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-6">Services</h3>
                         <ul className="space-y-4">
                             {navigation.services.map((item) => (
                                 <li key={item.name}>
-                                    <Link
-                                        href={item.href}
-                                        className="text-base text-gray-400 hover:text-blue-400 transition-colors duration-300"
-                                    >
+                                    <Link href={item.href} className="text-gray-600 hover:text-blue-600 transition-colors duration-300">
                                         {item.name}
                                     </Link>
                                 </li>
@@ -105,35 +88,37 @@ export default function Footer() {
                         </ul>
                     </div>
 
-                    {/* Contact Info */}
+                    {/* Social Links */}
                     <div>
-                        <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
-                            Contact Us
-                        </h3>
-                        <ul className="space-y-4">
-                            {contactInfo.map((item, index) => (
-                                <li key={index} className="flex items-center space-x-3">
-                                    <item.icon className="h-5 w-5 text-blue-400" aria-hidden="true" />
-                                    <span className="text-base text-gray-400">{item.text}</span>
-                                </li>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-6">Connect With Us</h3>
+                        <div className="flex space-x-4">
+                            {navigation.social.map((item) => (
+                                <Link
+                                    key={item.name}
+                                    href={item.href}
+                                    className="text-gray-600 hover:text-blue-600 transition-colors duration-300"
+                                >
+                                    <span className="sr-only">{item.name}</span>
+                                    <item.icon className="h-6 w-6" aria-hidden="true" />
+                                </Link>
                             ))}
-                        </ul>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            {/* Bottom Bar */}
-            <div className="bg-gray-800/50">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
-                    <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-                        <p className="text-sm text-gray-400">
+            {/* Copyright */}
+            <div className="bg-gray-100 border-t border-gray-200">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                    <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+                        <p className="text-sm text-gray-600">
                             {new Date().getFullYear()} Synapse Labs. All rights reserved.
                         </p>
                         <div className="flex space-x-6">
-                            <Link href="/privacy" className="text-sm text-gray-400 hover:text-blue-400 transition-colors duration-300">
+                            <Link href="/privacy" className="text-sm text-gray-600 hover:text-blue-600">
                                 Privacy Policy
                             </Link>
-                            <Link href="/terms" className="text-sm text-gray-400 hover:text-blue-400 transition-colors duration-300">
+                            <Link href="/terms" className="text-sm text-gray-600 hover:text-blue-600">
                                 Terms of Service
                             </Link>
                         </div>

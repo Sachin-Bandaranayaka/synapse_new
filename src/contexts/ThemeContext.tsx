@@ -17,10 +17,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
     useEffect(() => {
         setMounted(true);
-        // Check local storage or system preference
+        // Check local storage or default to light
         const savedTheme = localStorage.getItem('theme') as Theme;
-        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        const initialTheme = savedTheme || systemTheme;
+        const initialTheme = savedTheme || 'light';
 
         setTheme(initialTheme);
         document.documentElement.classList.remove('light', 'dark');

@@ -21,7 +21,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en" className="dark">
+        <html lang="en">
             <head>
                 <Script
                     id="schema-org"
@@ -36,7 +36,7 @@ export default function RootLayout({
                 />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
             </head>
-            <body className={`${inter.className} bg-gray-900 text-gray-100 min-h-screen flex flex-col overscroll-none`}>
+            <body className={`${inter.className} bg-white text-gray-900 min-h-screen flex flex-col overscroll-none`}>
                 <RootLayoutClient>
                     {children}
                 </RootLayoutClient>
